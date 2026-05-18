@@ -154,10 +154,12 @@ export default function Products({ addToCart }) {
           {/* Promo banner */}
           <div className="promo-banner">
             <h4>Featured Dessert</h4>
-            <img
-              src="/images/Torched-Classic-Cheesecake-3-600x600.jpg"
-              alt="Torched Classic Cheesecake"
-            />
+            <div className="promo-img-wrap">
+              <img
+                src="/images/Torched-Classic-Cheesecake-3-600x600.jpg"
+                alt="Torched Classic Cheesecake"
+              />
+            </div>
             <p>Try our new Torched Classic Cheesecake!</p>
             <a href="#pastries" onClick={e => handleScrollToSection(e, 'pastries')}>
               Order Now
@@ -188,87 +190,80 @@ export default function Products({ addToCart }) {
           </div>
 
           {/* Category sections */}
-          {categories.map(category => {
-            const items = filteredProducts.filter(p => p.category === category);
-            if (items.length === 0) return null;
+          {totalVisible > 0 ? (
+            categories.map(category => {
+              const items = filteredProducts.filter(p => p.category === category);
+              if (items.length === 0) return null;
 
-            return (
-              <section key={category} id={category} className="product-category">
-
-                <div className="category-header">
-                  <h2>{categoryTitles[category]}</h2>
-                  <span className="category-count">{items.length} items</span>
-                </div>
-
-                <div className="product-grid">
-                  {items.map(product => {
-                    const isAdded = !!addedCards[product.id];
-                    const tags = (product.preferences || []).slice(0, 2);
-
-                    return (
-                      <article key={product.id} className="product-card">
-
-                        {/* Image + quick-add overlay */}
-                        <div className="card-img-wrap">
-                          <img src={`/${product.image}`} alt={product.name} />
-                          <button
-                            className="quick-add-overlay"
-                            onClick={() => handleAddToCart(product)}
-                            aria-label={`Quick add ${product.name} to cart`}
-                          >
-                            {isAdded ? '✓ Added' : '+ Quick Add'}
-                          </button>
-                        </div>
-
-                        {/* Card body */}
-                        <div className="card-body">
-
-                          {/* Preference tags */}
-                          {tags.length > 0 && (
-                            <div className="card-tags">
-                              {tags.map(t => (
-                                <span
-                                  key={t}
-                                  className="tag"
-                                  style={TAG_STYLES[t] ? {
-                                    background:  TAG_STYLES[t].background,
-                                    borderColor: TAG_STYLES[t].border,
-                                    color:       TAG_STYLES[t].color,
-                                  } : undefined}
-                                >
-                                  {PREF_LABELS[t] || t}
-                                </span>
-                              ))}
-                            </div>
-                          )}
-
-                          <h3>{product.name}</h3>
-
-                          {product.description && (
-                            <p className="description">{product.description}</p>
-                          )}
-
-                          {/* Price + add button row */}
-                          <div className="card-footer">
-                            <span className="price">₱{product.price.toFixed(2)}</span>
+              return (
+                <section key={category} id={category} className="product-category">
+                  <div className="category-header">
+                    <h2>{categoryTitles[category]}</h2>
+                    <span className="category-count">{items.length} items</span>
+                  </div>
+                  <div className="product-grid">
+                    {items.map(product => {
+                      const isAdded = !!addedCards[product.id];
+                      const tags = (product.preferences || []).slice(0, 2);
+                      return (
+                        <article key={product.id} className="product-card">
+                          <div className="card-img-wrap">
+                            <img src={`/${product.image}`} alt={product.name} />
                             <button
-                              className="add-btn"
+                              className="quick-add-overlay"
                               onClick={() => handleAddToCart(product)}
-                              aria-label={`Add ${product.name} to cart`}
-                              title="Add to cart"
+                              aria-label={`Quick add ${product.name} to cart`}
                             >
-                              {isAdded ? '✓' : '+'}
+                              {isAdded ? '✓ Added' : '+ Quick Add'}
                             </button>
                           </div>
-
-                        </div>
-                      </article>
-                    );
-                  })}
-                </div>
-              </section>
-            );
-          })}
+                          <div className="card-body">
+                            {tags.length > 0 && (
+                              <div className="card-tags">
+                                {tags.map(t => (
+                                  <span
+                                    key={t}
+                                    className="tag"
+                                    style={TAG_STYLES[t] ? {
+                                      background:  TAG_STYLES[t].background,
+                                      borderColor: TAG_STYLES[t].border,
+                                      color:       TAG_STYLES[t].color,
+                                    } : undefined}
+                                  >
+                                    {PREF_LABELS[t] || t}
+                                  </span>
+                                ))}
+                              </div>
+                            )}
+                            <h3>{product.name}</h3>
+                            {product.description && (
+                              <p className="description">{product.description}</p>
+                            )}
+                            <div className="card-footer">
+                              <span className="price">₱{product.price.toFixed(2)}</span>
+                              <button
+                                className="add-btn"
+                                onClick={() => handleAddToCart(product)}
+                                aria-label={`Add ${product.name} to cart`}
+                                title="Add to cart"
+                              >
+                                {isAdded ? '✓' : '+'}
+                              </button>
+                            </div>
+                          </div>
+                        </article>
+                      );
+                    })}
+                  </div>
+                </section>
+              );
+            })
+          ) : (
+            <div className="empty-catalog">
+              <h3>No products found</h3>
+              <p>Try adjusting your filters or check back later.</p>
+            </div>
+          )}
 
         </main>
       </div>

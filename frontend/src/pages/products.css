@@ -3,22 +3,36 @@
    ============================================================================= */
 
 .product-page-layout {
-  display: grid;
-  grid-template-columns: 220px 1fr;
-  gap: var(--spacing-lg);
-  padding-top: var(--spacing-sm);
-  align-items: start;
+  display: flex;
+  min-height: calc(100vh - 6.5rem);
+  width: 100%;
+  position: relative;
+  gap: 0;
+  align-items: flex-start;
+}
+
+/* Prevent scrollbar from shifting layout */
+html {
+  scrollbar-gutter: stable;
 }
 
 /* ── SIDEBAR ─────────────────────────────────────────────────────────────── */
 
 .sidebar {
   position: sticky;
-  top: 6rem;
+  top: 7.5rem;
+  width: 240px;
+  flex-shrink: 0;
   height: fit-content;
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 0.5rem;
+  padding: 0 0.8rem;
+  overflow: visible;
+  border-right: 1px solid var(--border);
+  background: var(--bg);
+  z-index: 50;
+  will-change: transform;
 }
 
 /* ── CATEGORY NAV ─────────────────────────────────────────────────────────── */
@@ -35,31 +49,32 @@
   align-items: center;
   justify-content: space-between;
   padding: 0.65rem 0.9rem;
-  font-size: 0.75rem;
+  font-size: 0.68rem;
   font-weight: 600;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
   color: var(--text-muted);
   text-decoration: none;
-  border-radius: var(--radius);
-  border-left: 2px solid transparent;
-  transition: color 0.25s ease,
-              background 0.25s ease,
-              border-color 0.25s ease,
-              padding-left 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  border-radius: 3px;
+  border-left: 2.5px solid transparent;
+  transition: color 0.2s ease,
+              background 0.2s ease,
+              border-color 0.2s ease,
+              padding-left 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .sidebar .filter-group:first-child ul li a:hover {
   color: var(--text);
-  background: var(--bg-offset);
-  padding-left: 1.1rem;
+  background: rgba(0, 0, 0, 0.03);
+  padding-left: 1.15rem;
 }
 
 .sidebar .filter-group:first-child ul li a.is-active {
   color: var(--text);
-  background: var(--bg-offset);
+  background: rgba(0, 0, 0, 0.04);
   border-left-color: var(--accent);
-  padding-left: 1.1rem;
+  padding-left: 1.15rem;
+  font-weight: 700;
 }
 
 /* Item count badge on nav links */
@@ -84,22 +99,18 @@
 /* ── FILTER GROUP ─────────────────────────────────────────────────────────── */
 
 .filter-group {
-  border-top: 1px solid var(--border);
-  padding-top: 1.5rem;
-}
-
-.filter-group:first-child {
-  border-top: none;
-  padding-top: 0;
+  margin-bottom: 0.5rem;
+  padding-bottom: 0;
 }
 
 .filter-group h3 {
   font-size: 0.65rem;
   font-weight: 800;
-  letter-spacing: 0.25em;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--text-muted);
-  margin-bottom: 1rem;
+  margin-bottom: 0.35rem;
+  opacity: 0.7;
 }
 
 /* Checkbox filter rows */
@@ -107,16 +118,16 @@
   display: flex;
   align-items: center;
   gap: 0.6rem;
-  padding: 0.4rem 0;
+  padding: 0.2rem 0;
 }
 
 .filter-group form > div label {
-  font-size: 0.78rem;
+  font-size: 0.73rem;
   font-weight: 500;
   color: var(--text-muted);
   cursor: pointer;
-  transition: color 0.2s;
-  letter-spacing: 0.02em;
+  transition: color 0.15s;
+  letter-spacing: 0.01em;
   user-select: none;
 }
 
@@ -163,12 +174,16 @@
   border-radius: var(--radius);
   overflow: hidden;
   background: var(--bg-offset);
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  padding: 0 var(--spacing-md) var(--spacing-md);
+  text-align: center;
+  margin-top: 0.5rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.4s cubic-bezier(0.34, 1.36, 0.64, 1);
 }
 
 .promo-banner:hover {
   border-color: var(--accent);
-  box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+  transform: translateY(-4px);
+  box-shadow: 0 16px 32px rgba(0,0,0,0.08);
 }
 
 .promo-banner h4 {
@@ -177,7 +192,7 @@
   letter-spacing: 0.25em;
   text-transform: uppercase;
   color: var(--text-muted);
-  padding: 1rem 1rem 0.5rem;
+  padding: 0.8rem 0.8rem 0.4rem;
   margin: 0;
 }
 
@@ -197,7 +212,7 @@
   font-size: 0.8rem;
   font-weight: 500;
   color: var(--text);
-  padding: 0.75rem 1rem 0;
+  padding: 0.6rem 0.8rem 0;
   margin: 0;
   line-height: 1.4;
 }
@@ -210,7 +225,7 @@
   text-transform: uppercase;
   color: var(--text);
   text-decoration: none;
-  padding: 0.75rem 1rem 1rem;
+  padding: 0.6rem 0.8rem 0.8rem;
   transition: letter-spacing 0.3s ease;
 }
 
@@ -226,13 +241,16 @@
 /* ── CATALOG MAIN ─────────────────────────────────────────────────────────── */
 
 .main-product-catalog {
-  padding: 0 var(--spacing-sm) var(--spacing-sm);
+  flex: 1;
+  padding: 0.8rem 1.3rem 2rem 2.5rem;
+  display: flex;
+  flex-direction: column;
 }
 
 /* ── PRODUCT CATEGORY SECTION ─────────────────────────────────────────────── */
 
 .product-category {
-  padding: var(--spacing-xl) 0;
+  padding: 0.4rem 0 1rem;
   border-bottom: 1px solid var(--border);
 }
 
@@ -249,7 +267,7 @@
   display: flex;
   align-items: baseline;
   justify-content: space-between;
-  margin-bottom: var(--spacing-lg);
+  margin-bottom: 0.35rem;
 }
 
 .category-count {
@@ -264,8 +282,9 @@
 
 .product-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.4rem;
+  width: 100%;
 }
 
 /* ── PRODUCT CARD ─────────────────────────────────────────────────────────── */
@@ -273,20 +292,20 @@
 .product-card {
   background: var(--card);
   border: 1px solid var(--border);
-  border-radius: var(--radius);
+  border-radius: 5px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
   position: relative;
-  transition: transform 0.4s cubic-bezier(0.34, 1.2, 0.64, 1),
-              box-shadow 0.4s ease,
-              border-color 0.3s ease;
+  transition: transform 0.3s cubic-bezier(0.34, 1.2, 0.64, 1),
+              box-shadow 0.3s ease,
+              border-color 0.25s ease;
 }
 
 .product-card:hover {
-  border-color: var(--border-strong);
-  transform: translateY(-6px);
-  box-shadow: 0 24px 48px rgba(0,0,0,0.08), 0 8px 16px rgba(0,0,0,0.04);
+  border-color: var(--accent);
+  transform: translateY(-10px) scale(1.01);
+  box-shadow: 0 24px 48px rgba(0,0,0,0.10), 0 8px 16px rgba(0,0,0,0.06);
 }
 
 /* Top-edge accent sweep */
@@ -295,11 +314,11 @@
   position: absolute;
   top: 0; left: 0;
   width: 100%;
-  height: 2px;
+  height: 1.5px;
   background: var(--accent);
   transform: scaleX(0);
   transform-origin: left;
-  transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 2;
 }
 
@@ -320,11 +339,49 @@
   aspect-ratio: 1;
   object-fit: cover;
   display: block;
-  transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+  transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 .product-card:hover img {
-  transform: scale(1.07);
+  transform: scale(1.08);
+}
+
+.promo-img-wrap {
+  width: 100%;
+  aspect-ratio: 4/3;
+  overflow: hidden;
+  margin-bottom: var(--spacing-sm);
+}
+
+.promo-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.promo-banner:hover .promo-img-wrap img {
+  transform: scale(1.08);
+}
+
+.promo-img-wrap {
+  width: 100%;
+  aspect-ratio: 4/3;
+  overflow: hidden;
+  margin-bottom: var(--spacing-sm);
+}
+
+.promo-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.promo-banner:hover .promo-img-wrap img {
+  transform: scale(1.08);
 }
 
 /* "Quick Add" overlay that appears on image hover */
@@ -333,16 +390,16 @@
   bottom: 0;
   left: 0;
   right: 0;
-  background: rgba(0, 0, 0, 0.82);
+  background: rgba(0, 0, 0, 0.85);
   color: white;
   text-align: center;
-  padding: 0.75rem;
-  font-size: 0.7rem;
+  padding: 0.8rem;
+  font-size: 0.65rem;
   font-weight: 700;
-  letter-spacing: 0.15em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   transform: translateY(100%);
-  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
   border: none;
   width: 100%;
@@ -355,11 +412,11 @@
 /* ── CARD BODY ────────────────────────────────────────────────────────────── */
 
 .product-card .card-body {
-  padding: 1rem 1rem 1.25rem;
+  padding: 0 0.9rem 1rem;
   display: flex;
   flex-direction: column;
   flex: 1;
-  gap: 0.4rem;
+  gap: 0.45rem;
 }
 
 .product-card .card-tags {
@@ -367,36 +424,37 @@
   flex-wrap: wrap;
   gap: 0.3rem;
   margin-bottom: 0.1rem;
+  margin-top: 0.6rem;
 }
 
 .product-card .tag {
-  font-size: 0.6rem;
+  font-size: 0.55rem;
   font-weight: 700;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  padding: 2px 7px;
+  padding: 3px 8px;
   border: 1px solid var(--border);
-  border-radius: 20px;
+  border-radius: 16px;
   color: var(--text-muted);
-  background: var(--bg-offset);
+  background: rgba(0, 0, 0, 0.02);
 }
 
 .product-card h3 {
-  font-size: 0.9rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+  font-size: 1.15rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  text-transform: none;
   color: var(--text);
   margin: 0;
-  line-height: 1.3;
+  line-height: 1.35;
 }
 
 .product-card .description {
-  font-size: 0.78rem;
+  font-size: 0.85rem;
   color: var(--text-muted);
   line-height: 1.5;
   margin: 0;
-  min-height: 2.3em;
+  min-height: 2.25em;
 }
 
 .product-card .card-footer {
@@ -410,10 +468,10 @@
 }
 
 .product-card .price {
-  font-size: 1rem;
-  font-weight: 800;
+  font-size: 1.15rem;
+  font-weight: 300;
   color: var(--text);
-  letter-spacing: 0.03em;
+  letter-spacing: 0.02em;
   margin: 0;
   flex-shrink: 0;
 }
@@ -423,18 +481,18 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 36px;
-  height: 36px;
-  border-radius: var(--radius-sm);
+  width: 34px;
+  height: 34px;
+  border-radius: 3px;
   border: 1.5px solid var(--accent);
   background: var(--accent);
   color: white;
   cursor: pointer;
   flex-shrink: 0;
-  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
-              box-shadow 0.3s ease,
-              background 0.25s ease;
-  font-size: 1.1rem;
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1),
+              box-shadow 0.25s ease,
+              background 0.2s ease;
+  font-size: 1rem;
   line-height: 1;
   position: relative;
   overflow: hidden;
@@ -459,8 +517,8 @@
 .product-card .add-btn:hover {
   background: #222;
   border-color: #222;
-  transform: scale(1.12) rotate(3deg);
-  box-shadow: 0 6px 18px rgba(0,0,0,0.18);
+  transform: scale(1.08) rotate(1deg);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.12);
 }
 
 .product-card .add-btn:active {
@@ -519,21 +577,43 @@
   border-radius: var(--radius);
 }
 
+.empty-catalog {
+  text-align: center;
+  padding: 4rem 2rem;
+  border: 1px dashed var(--border);
+  border-radius: var(--radius);
+  margin-top: 2rem;
+}
+
+.empty-catalog h3 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 0.5rem;
+  text-transform: none;
+  letter-spacing: normal;
+}
+
+.empty-catalog p {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
 /* ── RESULTS SUMMARY BAR ─────────────────────────────────────────────────── */
 
 .catalog-summary-bar {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-bottom: 1.5rem;
-  margin-bottom: 0.5rem;
+  padding-bottom: 1rem;
+  margin-bottom: 0.8rem;
   border-bottom: 1px solid var(--border);
 }
 
 .catalog-summary-bar .result-count {
-  font-size: 0.72rem;
+  font-size: 0.68rem;
   font-weight: 600;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--text-muted);
 }
@@ -554,18 +634,18 @@
 .filter-chip {
   display: inline-flex;
   align-items: center;
-  gap: 0.3rem;
-  font-size: 0.65rem;
+  gap: 0.35rem;
+  font-size: 0.6rem;
   font-weight: 700;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.07em;
   text-transform: uppercase;
-  padding: 3px 8px;
+  padding: 4px 9px;
   background: var(--accent);
   color: white;
-  border-radius: 20px;
+  border-radius: 16px;
   cursor: pointer;
   border: none;
-  transition: opacity 0.2s ease, transform 0.2s ease;
+  transition: opacity 0.15s ease, transform 0.15s ease;
 }
 
 .filter-chip:hover {
