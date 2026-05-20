@@ -87,13 +87,13 @@
 
 /* Gentle parallax drift — sub items float slightly toward center on hover */
 .hero-composition:hover .comp-item.sub-1 {
-  transform: translateY(-10px) translateX(-4px);
+  transform: translateY(-15px) translateX(-4px);
   opacity: 1;
 }
 
 .hero-composition:hover .comp-item.sub-2 {
-  transform: translateY(-8px) translateX(4px);
-  opacity: 0.8;
+  transform: translateY(-15px) translateX(4px);
+  opacity: 1;
 }
 
 .hero-composition:hover .comp-item.main {
