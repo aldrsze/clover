@@ -35,7 +35,6 @@
   
   --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
   --shadow: 0 4px 6px rgba(0,0,0,0.02);
-  --shadow-lg: 0 10px 15px rgba(0,0,0,0.03);
   
   --container: 1800px;
   --spacing-xs: 0.5rem;
@@ -46,7 +45,6 @@
   
   --transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
   --transition-fast: all 0.18s cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-slow: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 
@@ -124,12 +122,8 @@ h1, h2, h3, h4 {
 }
 
 /* Elegant Section Header Style */
-.section-header, 
 .featured-products h2, 
 .product-category h2,
-.about-us h2,
-.contact-form-section h2,
-.contact-info h2,
 .call-to-action h2 {
   text-align: center;
   margin-bottom: var(--spacing-lg);
@@ -198,15 +192,6 @@ header {
   justify-content: flex-end;
   align-items: center;
   gap: var(--spacing-sm);
-}
-
-header h1 {
-  font-size: 1.25rem;
-  margin-bottom: 0;
-  letter-spacing: 0.15em;
-  font-weight: 900;
-  cursor: pointer;
-  text-transform: uppercase;
 }
 
 nav ul {
@@ -512,14 +497,6 @@ body.has-snap-scroll footer {
   text-decoration: none;
   font-size: 0.8rem;
   font-weight: 500;
-  transition: var(--transition);
-}
-
-.footer-section a {
-  color: var(--text-muted);
-  text-decoration: none;
-  font-size: 0.8rem;
-  font-weight: 500;
   transition: color 0.25s ease, padding-left 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
   display: inline-flex;
   align-items: center;
@@ -622,19 +599,8 @@ body.has-snap-scroll footer {
    — .animate-on-scroll.is-visible: fully visible + no transform; !important
      overrides any directional transform set by variant classes.
    — .about-text-side.is-visible: 0.2s delay so the text reveals after the visual.
-   — @keyframes float / pulse: shared keyframes also used by hero and about sections.
+   — @keyframes float-shadow / pulse-glow: shared keyframes defined in logo.css and about.css.
    ============================================================================= */
-
-/* Animations */
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-20px); }
-}
-
-@keyframes pulse {
-  0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.5; }
-  50% { transform: translate(-50%, -50%) scale(1.1); opacity: 0.8; }
-}
 
 /* Animations & Scroll Reveals */
 .animate-on-scroll {

@@ -1,6 +1,6 @@
 /* =============================================================================
     CONTACT — Two-column layout, info list, boutique form
-   — Used by: index.html — the combined Contact section near the bottom.
+   — Used by: Home.jsx — the combined Contact section near the bottom.
    — .contact-section: 2-column grid (info left, form right).
    — .contact-text-side: left column, left-aligned heading and info.
    — .contact-lead: large light-weight intro paragraph.
@@ -37,7 +37,6 @@
 }
 
 .contact-text-side h2 {
-  text-align: left;
   margin-bottom: var(--spacing-md);
 }
 
@@ -88,6 +87,7 @@
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+  position: relative;
 }
 
 .boutique-contact-form label {
@@ -129,10 +129,6 @@
 }
 
 /* Animated fill line on focus */
-.boutique-contact-form .form-group {
-  position: relative;
-}
-
 .boutique-contact-form .form-group::after {
   content: '';
   position: absolute;

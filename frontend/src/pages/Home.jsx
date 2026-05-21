@@ -32,7 +32,7 @@ export default function Home({ setCurrentPage }) {
   };
 
   return (
-    <main className="home-page-content snap-container" id="home">
+    <main className="home-page-content" id="home">
       {/* HERO SECTION — Fully Restored with 3-Image Composite Layout */}
       <section className="hero-section snap-section">
         <div className="container">
@@ -164,7 +164,7 @@ export default function Home({ setCurrentPage }) {
       <section id="about" className="about-us-container snap-section">
         <div className="container">
           <div className="about-content-wrapper">
-            <div className="about-image-side animate-on-scroll fade-in-left">
+            <div className="animate-on-scroll fade-in-left">
               <div className="text-composition">
                 <div className="large-about-logo">
                   <img src="/images/clover-logo.png" alt="Clover Logo" className="brand-logo-img-large animated-logo" />
