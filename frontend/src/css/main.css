@@ -37,12 +37,12 @@
   --shadow: 0 4px 6px rgba(0,0,0,0.02);
   --shadow-lg: 0 10px 15px rgba(0,0,0,0.03);
   
-  --container: 1100px;
+  --container: 1800px;
   --spacing-xs: 0.5rem;
   --spacing-sm: 1rem;
-  --spacing-md: 2rem;
-  --spacing-lg: 4rem;
-  --spacing-xl: 6rem;
+  --spacing-md: 1.5rem;
+  --spacing-lg: 3rem;
+  --spacing-xl: 4.5rem;
   
   --transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
   --transition-fast: all 0.18s cubic-bezier(0.4, 0, 0.2, 1);
@@ -81,10 +81,21 @@ body {
   overflow-x: clip;
 }
 
+#root {
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  text-align: center;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
 .container {
   max-width: var(--container);
   margin: 0 auto;
-  padding: 0 var(--spacing-sm);
+  padding: 0 clamp(1.5rem, 6vw, 5rem);
 }
 
 

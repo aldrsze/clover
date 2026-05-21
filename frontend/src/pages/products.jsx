@@ -123,13 +123,13 @@ export default function Products({ addToCart }) {
           <div className="loader-bar-wrap">
             <div className="loader-bar-fill" />
           </div>
-          <p>Curating the Collection</p>
+          <p>Loading the Collection</p>
         </div>
       )}
 
       <div 
         className={`container products-entrance-container ${!loading ? 'is-loaded' : ''}`} 
-        style={{ marginTop: '30px', width: '100%', maxWidth: '1100px' }}
+        style={{ marginTop: '30px', width: '100%', maxWidth: 'var(--container)' }}
       >
         <div className="product-page-layout">
 
