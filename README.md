@@ -40,12 +40,20 @@ Clover is designed with a focus on **clean separation of concerns** and **semant
 ### Local Setup
 1. **Clone Repository:**
    ```bash
-   git clone [repository-url]
+   git clone https://github.com/aldrsze/clover.git
    ```
 2. **Server Configuration:**
    - Navigate to `/backend`.
    - Run `npm install`.
-   - Configure `.env` with your PostgreSQL credentials.
+   - Create a `.env` file in the `/backend` directory with the following format:
+     ```env
+     PORT=5000
+     DB_USER=your_postgres_user
+     DB_HOST=localhost
+     DB_DATABASE=your_database_name
+     DB_PASSWORD=your_postgres_password
+     DB_PORT=5432
+     ```
    - Start: `npm run dev`.
 3. **Client Configuration:**
    - Navigate to `/frontend`.
