@@ -131,14 +131,14 @@
 
   /* ── Product Grid ── */
   .product-grid {
-    /* Balance grid: 4 columns on large, 3 on smaller laptops */
-    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    /* Balance grid: 5-6 columns on large, 4 on smaller laptops */
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
     gap: clamp(1rem, 2vw, 2.5rem);
   }
 
   @media (max-width: 1400px) {
     .product-grid {
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(4, 1fr);
     }
   }
 
@@ -256,7 +256,7 @@
   }
   
   .product-grid {
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(6, 1fr);
   }
 }
 

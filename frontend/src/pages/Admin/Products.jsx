@@ -170,7 +170,7 @@ export default function Products() {
                     </div>
                   </td>
                   <td>{CATEGORY_LABEL[product.category] || product.category || 'Uncategorized'}</td>
-                  <td>${parseFloat(product.price).toFixed(2)}</td>
+                  <td>₱{parseFloat(product.price).toFixed(2)}</td>
                   <td>{product.stock_quantity}</td>
                   <td>
                     <span className={`status-badge ${product.stock_quantity > 0 ? 'active' : 'inactive'}`}>

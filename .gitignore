@@ -1,6 +1,7 @@
 # ==============================================================================
 # Multi-Project Root .gitignore for Clover PERN Stack
 # ==============================================================================
+GEMINI.md
 
 # ─── DEPENDENCY DIRECTORIES ───────────────────────────────────────────────────
 # Never commit third-party packages. They are restored using 'npm install'.
