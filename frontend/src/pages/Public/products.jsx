@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback, useLayoutEffect } from 'react';
 import { MENU_CATEGORIES, MENU_PREFERENCES, PREF_LABEL } from '../../constants/menuConstants';
+import { apiClient } from '../../api/apiClient';
 
 // Tag colors per preference (using CSS variables from main.css)
 const TAG_STYLES = {
@@ -10,9 +11,9 @@ const TAG_STYLES = {
 };
 
 export default function Products({ addToCart }) {
-  const [products, setProducts]           = useState([]);
   const [selectedPrefs, setSelectedPrefs] = useState([]);
-  const [loading, setLoading]             = useState(true);
+  const queryString = selectedPrefs.length > 0 ? `?preferences=${selectedPrefs.join(',')}` : '';
+  const { products, loading, error } = useProducts(queryString);
   const [activeCategory, setActiveCategory] = useState('');
   const [addedCards, setAddedCards]       = useState({});
 
@@ -34,39 +35,6 @@ export default function Products({ addToCart }) {
     return () => clearTimeout(scrollTimeout);
   }, []);
 
-  // ── FETCH LOGIC ─────────────────────────────────────────────────
-  useEffect(() => {
-    setLoading(true);
-    
-    // Dynamically build the query string if checkboxes are ticked
-    const queryString = selectedPrefs.length > 0 ? `?preferences=${selectedPrefs.join(',')}` : '';
-    
-    fetch(`http://localhost:5000/api/products${queryString}`)
-      .then(res => res.json())
-      .then(data => { 
-        // Normalize PostgreSQL column names to match the React UI requirements
-        const normalizedData = data.map(item => ({
-            ...item,
-            id: item.product_id || item.id,
-            image: item.image_path || item.image
-        }));
-        
-        setProducts(normalizedData); 
-        setLoading(false); 
-
-        // Set first category as active if none set
-        if (normalizedData.length > 0) {
-          const firstCat = MENU_CATEGORIES.find(catObj => 
-            normalizedData.some(p => p.category?.toLowerCase() === catObj.value.toLowerCase())
-          );
-          if (firstCat) setActiveCategory(firstCat.value);
-        }
-      })
-      .catch(err => { 
-        console.error('Error connecting to backend database API:', err); 
-        setLoading(false); 
-      });
-  }, [selectedPrefs]); 
 
   // ── SCROLL-SPY ──────────────────────────────────────────────────────────
   useEffect(() => {

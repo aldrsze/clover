@@ -1,48 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Search, ShoppingCart } from 'lucide-react';
+import { smoothScrollTo } from '../../../utils/scrollUtils';
+import { useScrollSpy } from '../../../hooks/useScrollSpy';
 
 export default function Header({ currentPage, setCurrentPage, cartCount }) {
-  const [activeSection, setActiveSection] = useState('home');
   const [isSearchActive, setIsSearchActive] = useState(false);
+  const activeSection = useScrollSpy(['home', 'about', 'contact']);
 
-  // ── SCROLL SPY FOR NAVIGATION HIGHLIGHTS ──
-  useEffect(() => {
-    if (currentPage === 'products') {
-      setActiveSection('products');
-      return;
-    }
-
-    const handleScroll = () => {
-      const sections = ['home', 'about', 'contact'];
-      let current = 'home';
-      for (const section of sections) {
-        const element = document.getElementById(section);
-        if (element) {
-          const rect = element.getBoundingClientRect();
-          if (rect.top <= 150) current = section;
-        }
-      }
-      setActiveSection(current);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    handleScroll();
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [currentPage]);
-
-  const smoothScrollTo = (targetY, duration = 1000) => {
-    const startY = window.scrollY;
-    const distance = targetY - startY;
-    const startTime = performance.now();
-    const ease = (t) => t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
-    const step = (currentTime) => {
-      const elapsed = currentTime - startTime;
-      const progress = Math.min(elapsed / duration, 1);
-      window.scrollTo(0, startY + distance * ease(progress));
-      if (progress < 1) requestAnimationFrame(step);
-    };
-    requestAnimationFrame(step);
-  };
+  const displayActiveSection = currentPage === 'products' ? 'products' : activeSection;
 
   const handleNavClick = (e, sectionId) => {
     e.preventDefault();
@@ -102,16 +67,16 @@ export default function Header({ currentPage, setCurrentPage, cartCount }) {
         <nav className="header-center">
           <ul>
             <li>
-              <a href="#home" className={activeSection === 'home' ? 'is-active' : ''} onClick={(e) => handleNavClick(e, 'home')}>Home</a>
+              <a href="#home" className={displayActiveSection === 'home' ? 'is-active' : ''} onClick={(e) => handleNavClick(e, 'home')}>Home</a>
             </li>
             <li>
-              <a href="#about" className={activeSection === 'about' ? 'is-active' : ''} onClick={(e) => handleNavClick(e, 'about')}>About</a>
+              <a href="#about" className={displayActiveSection === 'about' ? 'is-active' : ''} onClick={(e) => handleNavClick(e, 'about')}>About</a>
             </li>
             <li>
-              <a href="#contact" className={activeSection === 'contact' ? 'is-active' : ''} onClick={(e) => handleNavClick(e, 'contact')}>Contact</a>
+              <a href="#contact" className={displayActiveSection === 'contact' ? 'is-active' : ''} onClick={(e) => handleNavClick(e, 'contact')}>Contact</a>
             </li>
             <li>
-              <a href="#products" className={activeSection === 'products' ? 'is-active' : ''} onClick={(e) => handleNavClick(e, 'products')}>Products</a>
+              <a href="#products" className={displayActiveSection === 'products' ? 'is-active' : ''} onClick={(e) => handleNavClick(e, 'products')}>Products</a>
             </li>
           </ul>
         </nav>

@@ -14,6 +14,8 @@ import {
   Image as ImageIcon
 } from 'lucide-react';
 import { MENU_CATEGORIES, CATEGORY_LABEL } from '../../constants/menuConstants';
+import { apiClient }  from '../../api/apiClient';
+import { productsService } from '../../api/productService';
 
 export default function Products() {
   const [products, setProducts] = useState([]);
@@ -36,8 +38,7 @@ export default function Products() {
 
   const fetchProducts = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/products');
-      const data = await response.json();
+      const data = await productsService.getProducts();
       setProducts(data);
     } catch (error) {
       console.error('Error fetching products:', error);
@@ -78,10 +79,7 @@ export default function Products() {
     }
 
     try {
-      const response = await fetch('http://localhost:5000/api/products', {
-        method: 'POST',
-        body: formData,
-      });
+      const response = await productsService.createProduct(formData)
 
       if (response.ok) {
         setIsModalOpen(false);

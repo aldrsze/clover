@@ -1,20 +1,7 @@
 import React from 'react';
+import { smoothScrollTo } from '../../../utils/scrollUtils';
 
 export default function Footer({ setCurrentPage }) {
-
-  const smoothScrollTo = (targetY, duration = 1000) => {
-    const startY = window.scrollY;
-    const distance = targetY - startY;
-    const startTime = performance.now();
-    const ease = (t) => t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
-    const step = (currentTime) => {
-      const elapsed = currentTime - startTime;
-      const progress = Math.min(elapsed / duration, 1);
-      window.scrollTo(0, startY + distance * ease(progress));
-      if (progress < 1) requestAnimationFrame(step);
-    };
-    requestAnimationFrame(step);
-  };
 
   const handleNavScroll = (e, sectionId) => {
     e.preventDefault();
