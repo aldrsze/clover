@@ -4,8 +4,17 @@ export default function Footer({ setCurrentPage }) {
   const handleNavScroll = (e, sectionId) => {
     e.preventDefault();
     setCurrentPage('home');
+    
+    // 1. Suspend CSS snapping
+    document.body.style.scrollSnapType = 'none';
+    
     setTimeout(() => {
       document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
+      
+      // 2. Restore snapping after animation finishes
+      setTimeout(() => {
+        document.body.style.scrollSnapType = '';
+      }, 1000);
     }, 50);
   };
 

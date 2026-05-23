@@ -74,7 +74,6 @@ body {
 
 body.has-snap-scroll {
   scroll-snap-type: y mandatory;
-  overflow-y: scroll;
   scroll-padding-top: clamp(70px, 7vh, 90px);
 }
 
@@ -90,10 +89,11 @@ body.has-snap-scroll {
 }
 
 .container {
-  max-width: var(--container);
+  max-width: 1400px;
   margin: 0 auto;
-  /* Horizontal gutters: balanced on laptop, generous on desktop */
-  padding: 0 clamp(2.5rem, 6vw, 5rem);
+  width: 100%;
+  /* Single source of truth for side gutters — all sections inherit this */
+  padding-inline: 10vw;
 }
 
 
@@ -390,8 +390,8 @@ body.has-snap-scroll footer {
 
 .footer-content {
   display: grid;
-  /* Columns: naturally sit 4-wide between laptop and desktop */
-  grid-template-columns: repeat(auto-fit, minmax(clamp(200px, 20vw, 260px), 1fr));
+  /* 4 equal columns: brand | links | contact | socials */
+  grid-template-columns: 2fr 1fr 1fr 1fr;
   gap: clamp(2rem, 4vw, var(--spacing-lg));
   margin-bottom: var(--spacing-sm);
   align-items: start;

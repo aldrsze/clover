@@ -93,30 +93,15 @@ export default function Products({ addToCart }) {
     return () => observer.disconnect();
   }, [loading, selectedPrefs]);
 
-  // ── SMOOTH SCROLL ───────────────────────────────────────────────────────
-  const slowScrollTo = useCallback((targetY, duration = 300) => {
-    const startY = window.scrollY;
-    const distance = targetY - startY;
-    let startTime = null;
-    const ease = t => t < 0.5 ? 8*t*t*t*t : 1 - Math.pow(-2*t+2, 4)/2;
-    const step = ts => {
-      if (!startTime) startTime = ts;
-      const p = Math.min((ts - startTime) / duration, 1);
-      window.scrollTo(0, startY + distance * ease(p));
-      if (p < 1) requestAnimationFrame(step);
-    };
-    requestAnimationFrame(step);
-  }, []);
-
   const handleScrollToSection = useCallback((e, id) => {
     e.preventDefault();
     const el = document.getElementById(id);
     if (el) {
-      slowScrollTo(el.getBoundingClientRect().top + window.scrollY - 96);
+      el.scrollIntoView({ behavior: 'smooth' });
       window.history.pushState(null, '', `#${id}`);
       setActiveCategory(id);
     }
-  }, [slowScrollTo]);
+  }, []);
 
   // ── FILTERS ─────────────────────────────────────────────────────────────
   const togglePref = pref =>

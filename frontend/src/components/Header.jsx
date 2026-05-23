@@ -51,26 +51,24 @@ export default function Header({ currentPage, setCurrentPage, cartCount }) {
       if (window.location.hash) {
         window.history.replaceState(null, '', window.location.pathname + window.location.search);
       }
-
       setCurrentPage('products');
       resetScrollTop();
       requestAnimationFrame(resetScrollTop);
     } else {
       setCurrentPage('home');
-      // Wait briefly for the home page component to mount before scrolling
+      
+      // 1. Suspend CSS snapping
+      document.body.style.scrollSnapType = 'none'; 
+      
       setTimeout(() => {
         const element = document.getElementById(sectionId);
         if (element) {
-          const offset = 80;
-          const bodyRect = document.body.getBoundingClientRect().top;
-          const elementRect = element.getBoundingClientRect().top;
-          const elementPosition = elementRect - bodyRect;
-          const offsetPosition = elementPosition - offset;
-
-          window.scrollTo({
-            top: offsetPosition,
-            behavior: 'smooth'
-          });
+          element.scrollIntoView({ behavior: 'smooth' });
+          
+          // 2. Restore snapping after animation finishes (approx 1000ms)
+          setTimeout(() => {
+            document.body.style.scrollSnapType = '';
+          }, 1000);
         }
       }, 50);
     }

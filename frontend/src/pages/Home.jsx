@@ -20,14 +20,18 @@ export default function Home({ setCurrentPage }) {
 
   const handleNavClick = (e, sectionId) => {
     e.preventDefault();
+    
+    // 1. Suspend CSS snapping
+    document.body.style.scrollSnapType = 'none';
+    
     const element = document.getElementById(sectionId);
     if (element) {
-      const offset = 80;
-      const bodyRect = document.body.getBoundingClientRect().top;
-      const elementRect = element.getBoundingClientRect().top;
-      const elementPosition = elementRect - bodyRect;
-      const offsetPosition = elementPosition - offset;
-      window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+      element.scrollIntoView({ behavior: 'smooth' });
+      
+      // 2. Restore snapping after animation finishes
+      setTimeout(() => {
+        document.body.style.scrollSnapType = '';
+      }, 1000);
     }
   };
 

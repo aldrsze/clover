@@ -40,6 +40,7 @@
   align-items: center;
   text-align: left;
   width: 100%;
+  transform: translateY(-7%);
 }
 
 /* Typography: 5.5rem (laptop) → 8rem (ultrawide), governed by viewport width */
@@ -190,19 +191,20 @@
 
 /* Horizontal padding and negative pull-up margin both scale with viewport */
 .featured-products .container {
-  padding: clamp(1.5rem, 2vw, var(--spacing-md, 2.5rem))
-           clamp(4rem, 6vw, 6rem);
+  padding-top: clamp(4rem, 6vw, 8rem);
+  padding-bottom: clamp(4rem, 6vw, 8rem);
   margin-top: clamp(-100px, -10vh, -80px);
 }
 
-/* Grid auto-fills columns: min 180px, max 1fr */
+/* Grid auto-fills columns: min 200px, max 1fr */
 .featured-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(clamp(180px, 16vw, 200px), 1fr));
-  gap: clamp(0.5rem, 1.2vw, 0.75rem);
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(0.75rem, 1.5vw, 1.25rem);
   align-items: stretch;
-  max-width: clamp(650px, 55vw, 850px);
+  max-width: 900px;
   margin: 0 auto;
+  width: 100%;
 }
 
 .featured-card {
@@ -316,12 +318,12 @@
 
 /* Section padding scales: tighter on laptop, generous on desktop */
 .call-to-action .container {
-  padding: clamp(2.5rem, 4vw, var(--spacing-lg, 4rem))
-           clamp(2.5rem, 6vw, 5rem);
+  padding-top: clamp(4rem, 6vw, 8rem);
+  padding-bottom: clamp(4rem, 6vw, 8rem);
 }
 
 .call-to-action .cta-panel {
-  max-width: clamp(900px, 80vw, 1150px);
+  max-width: 100%;
   margin: 0 auto;
   background: var(--bg-offset);
   /* Column ratio: 1.3/1 stable across larger screens */
@@ -351,6 +353,8 @@
 .bg-clover {
   position: absolute;
   --cta-opacity: 0.03;
+  top: -150px;
+  opacity: 0;
   transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
               transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
   animation: ctaSnowflake infinite linear;
