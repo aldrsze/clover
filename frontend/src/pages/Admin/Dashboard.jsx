@@ -1,4 +1,3 @@
-import React from 'react';
 import { Bell, LayoutDashboard } from 'lucide-react';
 import { Button } from '../../components/common/Button';
 

@@ -3,7 +3,7 @@ import Header from './components/common/Header';
 import Footer from './components/common/Footer';
 import Home from './pages/Public/HomePage/HomePage';
 import Products from './pages/Public/ProductsPage/ProductsPage';
-import AdminRoot from './pages/Admin/AdminRoot'; 
+import AdminRoot from './pages/Admin/AdminLayout'; 
 import { useCart } from './hooks/useCart';
 
 export default function App() {
