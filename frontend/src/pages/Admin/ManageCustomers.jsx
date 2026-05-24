@@ -1,15 +1,15 @@
-import { Bell } from 'lucide-react';
-import { Button } from '../../components/common/Button';
+import { Bell } from "lucide-react";
+import { Button } from "../../components/common/Button";
 
-export default function Orders() {
+export default function ManageCustomers() {
   return (
     <div className="view-container">
       <div className="sticky-header">
         <header className="page-header">
           <div className="page-header-info">
-            <span className="page-path">Sales</span>
-            <h1>Orders</h1>
-            <p>Manage and track your customer orders.</p>
+            <span className="page-path">CRM</span>
+            <h1>Customers</h1>
+            <p>Manage your customer database and relationships.</p>
           </div>
           <div className="page-header-actions">
             <Button variant="none" className="notification-trigger">
@@ -19,11 +19,9 @@ export default function Orders() {
           </div>
         </header>
       </div>
-      
+
       <div className="view-content">
-        <div className="empty-state" style={{ textAlign: 'center', padding: '64px 0' }}>
-          <p className="caption">No orders found.</p>
-        </div>
+        <p className="caption">Customer management features coming soon.</p>
       </div>
     </div>
   );

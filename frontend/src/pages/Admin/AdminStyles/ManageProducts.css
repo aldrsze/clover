@@ -1,0 +1,346 @@
+/* ── SECONDARY HEADER ROW ─────────────────────────────────────────────────── */
+
+.header-secondary-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 4px 0;
+}
+
+.header-secondary-row .quick-stats-bar {
+  padding: 0;
+}
+
+.search-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 16px;
+  background-color: var(--admin-surface);
+  border: 1px solid var(--admin-border);
+  border-radius: 10px;
+  flex: 1;
+  max-width: clamp(320px, calc(320px + (100vw - 1024px) * 0.15), 420px);
+  transition: all 200ms ease;
+}
+
+.search-container:focus-within {
+  background-color: #fff;
+  border-color: var(--admin-text);
+  box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.03);
+}
+
+.search-container input {
+  border: none;
+  background: transparent;
+  font-size: 13px;
+  font-weight: 500;
+  width: 100%;
+  outline: none;
+  color: var(--admin-text);
+}
+
+.search-container input::placeholder {
+  color: var(--admin-muted);
+}
+
+.search-container svg {
+  color: var(--admin-muted);
+  flex-shrink: 0;
+}
+
+/* ── QUICK STATS ──────────────────────────────────────────────────────────── */
+
+.quick-stats-bar {
+  display: flex;
+  gap: 12px;
+  padding: 20px 0;
+}
+
+.stat-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 16px;
+  background-color: transparent;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  min-width: 120px;
+  transition: all 200ms ease;
+}
+
+.stat-card:hover {
+  background-color: var(--admin-surface);
+  border-color: var(--admin-border);
+}
+
+.stat-card .stat-icon {
+  width: 24px;
+  height: 24px;
+  background-color: transparent;
+  color: var(--admin-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.stat-card .stat-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-card .stat-value {
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--admin-text);
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.stat-card .stat-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--admin-muted);
+  text-transform: none;
+  letter-spacing: 0;
+  margin-top: 4px;
+}
+
+.stat-card.warning .stat-icon {
+  color: #d97706;
+}
+.stat-card.danger .stat-icon {
+  color: #dc2626;
+}
+
+/* ── TABLE SEARCH BAR ─────────────────────────────────────────────────────── */
+
+.table-search-bar {
+  padding-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.table-search-bar .search-container {
+  max-width: clamp(320px, calc(320px + (100vw - 1024px) * 0.15), 420px);
+}
+
+/* ── BUTTONS ──────────────────────────────────────────────────────────────── */
+
+.action-buttons {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.table-actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.action-edit:hover {
+  color: #2563eb;
+  background-color: #eff6ff;
+}
+
+.action-delete:hover {
+  color: #dc2626;
+  background-color: #fef2f2;
+}
+
+/* ── TABLE ────────────────────────────────────────────────────────────────── */
+
+.table-container {
+  width: 100%;
+  overflow: auto;
+  flex: 1; /* Allow container to grow and fill view-content */
+  min-height: 0; /* Important for flex child with overflow */
+  border: 1px solid var(--admin-border);
+  background-color: #fff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  position: relative;
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  text-align: left;
+}
+
+/* ── STICKY TABLE HEADER ─────────────────────────────────────────────────── */
+
+.admin-table thead {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 150;
+}
+.admin-table thead th {
+  padding: 14px 16px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--admin-muted);
+  white-space: nowrap;
+
+  position: -webkit-sticky;
+  position: sticky;
+  top: -1px; /* Hug the top border to prevent 1px bleed */
+  z-index: 151;
+  /* Solid background to ensure rows don't overlap or leak through */
+  background-color: var(--admin-surface);
+  border-bottom: none;
+  box-shadow: inset 0 -1px 0 var(--admin-border);
+}
+
+.admin-table thead th:first-child {
+  border-top-left-radius: 0;
+}
+.admin-table thead th:last-child {
+  border-top-right-radius: 0;
+}
+
+/* 3. CRITICAL: Strip any leftover positioning from the rows */
+.admin-table tbody,
+.admin-table tbody tr,
+.admin-table tbody td {
+  position: static !important;
+  z-index: auto !important;
+}
+
+.admin-table tbody td {
+  /*
+    padding: 14/14px → 16/16px   COEFF ≈ 0.00481
+  */
+  padding: clamp(14px, calc(14px + (100vw - 1024px) * 0.00481), 16px);
+  font-size: 13px;
+  border-bottom: 1px solid var(--admin-border);
+  vertical-align: middle;
+}
+
+.admin-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.admin-table tbody tr {
+  transition: background-color 150ms ease;
+}
+
+.admin-table tbody tr:hover {
+  background-color: #fafafa;
+}
+
+/* ── PRODUCT CELL ─────────────────────────────────────────────────────────── */
+
+.product-cell {
+  display: flex;
+  align-items: flex-start;
+  /*
+    gap: 12px → 16px   COEFF ≈ 0.00962
+  */
+  gap: clamp(12px, calc(12px + (100vw - 1024px) * 0.00962), 16px);
+  padding: 4px 0;
+}
+
+.product-img {
+  /*
+    size: 48px → 56px   COEFF ≈ 0.01923
+  */
+  width: clamp(48px, calc(48px + (100vw - 1024px) * 0.01923), 56px);
+  height: clamp(48px, calc(48px + (100vw - 1024px) * 0.01923), 56px);
+  border-radius: 6px;
+  object-fit: cover;
+  background-color: var(--admin-secondary);
+  border: 1px solid var(--admin-border);
+  flex-shrink: 0; /* Alignment fix */
+}
+
+.product-info {
+  /* Alignment fix: constrain so description text never overflows the cell */
+  min-width: 0;
+}
+
+.product-info .name {
+  font-weight: 600;
+  display: block;
+  font-size: 14px;
+  margin-bottom: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.product-info .sku {
+  font-size: 11px;
+  color: var(--admin-muted);
+  display: block;
+  margin-bottom: 6px;
+}
+
+.product-info .description {
+  font-size: 12px;
+  color: var(--admin-muted);
+  line-height: 1.5;
+  margin: 0;
+  display: -webkit-box;
+  line-clamp: 2;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  /*
+    max-width: 380px → 450px   COEFF ≈ 0.16827
+    Alignment fix: description column widens proportionally with viewport
+    so it doesn't look pinched on laptop or blown-out on desktop.
+  */
+  max-width: clamp(380px, calc(380px + (100vw - 1024px) * 0.16827), 450px);
+}
+
+/* ── STATUS BADGE ─────────────────────────────────────────────────────────── */
+
+.status-badge {
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  background-color: var(--admin-secondary);
+  color: var(--admin-muted);
+  white-space: nowrap; /* Alignment fix */
+}
+
+.status-badge.active {
+  background-color: #f0fdf4;
+  color: #166534;
+  border: 1px solid #bbf7d0;
+}
+
+.status-badge.inactive {
+  background-color: #fef2f2;
+  color: #991b1b;
+  border: 1px solid #fecaca;
+}
+
+.preferences-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  max-width: 200px;
+}
+
+.pref-tag {
+  font-size: 10px;
+  font-weight: 600;
+  padding: 1px 6px;
+  background-color: var(--admin-secondary);
+  color: var(--admin-accent);
+  border-radius: 4px;
+  border: 1px solid var(--admin-border);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}

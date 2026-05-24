@@ -3,7 +3,6 @@ import {
   Plus, 
   Search, 
   Filter, 
-  MoreHorizontal, 
   X, 
   Upload,
   Pencil,
@@ -14,7 +13,6 @@ import {
   Image as ImageIcon
 } from 'lucide-react';
 import { MENU_CATEGORIES, CATEGORY_LABEL } from '../../constants/menuConstants';
-import { apiClient }  from '../../api/apiClient';
 import { productsService } from '../../api/productService';
 import { Button } from '../../components/common/Button';
 

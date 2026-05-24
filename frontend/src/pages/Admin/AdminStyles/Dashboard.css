@@ -1,0 +1,8 @@
+/* ── UI ELEMENTS ──────────────────────────────────────────────────────────── */
+
+.divider {
+  height: 1px;
+  background-color: var(--admin-border);
+  margin: 24px 0;
+  border: none;
+}
