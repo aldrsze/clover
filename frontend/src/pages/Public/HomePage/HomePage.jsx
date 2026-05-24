@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { smoothScrollTo } from "../../../utils/scrollUtils";
 import { useScrollSnap } from "../../../hooks/useScrollSnap";
 import { HeroSection } from "../../../components/features/HomePage/HeroSection";
-import { BestSellerSection } from "../../../components/features/HomePage/BestsellerSection";
+import { BestSellerSection } from "../../../components/features/HomePage/BestSellerSection";
 import { CallToActionSection } from "../../../components/features/HomePage/CallToActionSection";
 import { AboutSection } from "../../../components/features/HomePage/AboutSection";
 import { ContactSection } from "../../../components/features/HomePage/ContactSection";

@@ -15,16 +15,18 @@
 /* Official Brand Logo Styling (Image based) */
 .brand-logo-img {
   /* Scales from 32px (laptop) → 40px (desktop) */
-  width:  clamp(32px, 3vw, 40px);
+  width: clamp(32px, 3vw, 40px);
   height: clamp(32px, 3vw, 40px);
   object-fit: contain;
   filter: grayscale(1) brightness(0); /* Force black for minimalist theme */
-  transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.3s ease;
+  transition:
+    transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1),
+    filter 0.3s ease;
 }
 
 .brand-logo-img-small {
   /* Scales from 24px (laptop) → 30px (desktop) */
-  width:  clamp(24px, 2.2vw, 30px);
+  width: clamp(24px, 2.2vw, 30px);
   height: clamp(24px, 2.2vw, 30px);
   object-fit: contain;
   filter: grayscale(1) opacity(0.3);
@@ -69,12 +71,12 @@
 
 .brand-logo-img-large {
   /* Watermark: 400px (laptop) → 600px (desktop) — stays impactful at every size */
-  width:  clamp(400px, 40vw, 600px);
-  height: clamp(400px, 40vw, 600px);
+  width: clamp(300px, 40vw, 500px);
+  height: clamp(300px, 40vw, 500px);
   object-fit: contain;
   /* Blur scales proportionally so the soft-shadow effect holds at all sizes */
-  filter: grayscale(1) brightness(0) blur(clamp(4px, 0.5vw, 6px));
-  opacity: 0.05;
+  filter: grayscale() brightness(0) blur(clamp(4px, 0.5vw, 6px));
+  opacity: 0.2;
   transition: var(--transition);
 }
 
@@ -84,6 +86,11 @@
 
 /* Drift travel scales with viewport so it feels proportional to the watermark size */
 @keyframes float-shadow {
-  0%, 100% { transform: scale(1)   translateY(0); }
-  50%      { transform: scale(1.1) translateY(clamp(-12px, -1.5vw, -20px)); }
+  0%,
+  100% {
+    transform: scale(1) translateY(0);
+  }
+  50% {
+    transform: scale(1.1) translateY(clamp(-12px, -1.5vw, -20px));
+  }
 }

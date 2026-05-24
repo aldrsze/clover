@@ -1,6 +1,6 @@
 import React from "react";
 
-export const AboutSection = ( {setCurrentPage} ) => {
+export const AboutSection = ({ setCurrentPage }) => {
   return (
     <section id="about" className="about-us-container snap-section">
       <div className="container">

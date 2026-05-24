@@ -51,7 +51,6 @@ export const CallToActionSection = ({ setCurrentPage }) => {
           <div className="cta-actions">
             <Button
               onClick={() => setCurrentPage("products")}
-              style={{ border: "none", cursor: "pointer" }}
             >
               Browse Menu
             </Button>

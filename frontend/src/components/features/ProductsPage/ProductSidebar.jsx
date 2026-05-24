@@ -76,7 +76,7 @@ export const ProductSidebar = ({
           <p className="promo-desc">Rich, creamy, and torched to perfection.</p>
           <Button
             variant="secondary"
-            className="promo-btn"
+            className="btn-block-sm"
             onClick={(e) => handleScrollToSection(e, "pastries")}
           >
             View in Pastries

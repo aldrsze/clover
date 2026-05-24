@@ -92,3 +92,57 @@
   background-color: rgba(0, 0, 0, 0.05);
 }
 
+/* Modifier: Full-width card buttons (Promo Banner & Bestsellers) */
+.btn-block-sm {
+  width: 100%;
+  padding: 1rem;
+  font-size: 0.80rem;
+  margin-top: auto;
+}
+
+/* =============================================================================
+   ADMIN BUTTONS
+   ============================================================================= */
+.btn-admin-primary, 
+.btn-admin-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: background 0.2s, border-color 0.2s, color 0.2s, transform 0.1s;
+}
+
+/* Admin Primary */
+.btn-admin-primary {
+  background: var(--admin-primary);
+  border: 1px solid var(--admin-primary);
+  color: #ffffff;
+}
+.btn-admin-primary:hover {
+  background: var(--admin-accent);
+  border-color: var(--admin-accent);
+  transform: translateY(0);
+}
+.btn-admin-primary:active {
+  transform: scale(0.98);
+}
+
+/* Admin Secondary */
+.btn-admin-secondary {
+  background: var(--admin-bg);
+  border: 1px solid var(--admin-border);
+  color: var(--admin-text);
+}
+.btn-admin-secondary:hover {
+  background: var(--admin-secondary);
+  border-color: var(--admin-border);
+  transform: translateY(0);
+}
+.btn-admin-secondary:active {
+  transform: scale(0.98);
+}

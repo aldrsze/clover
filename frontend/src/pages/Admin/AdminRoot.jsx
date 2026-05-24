@@ -44,7 +44,7 @@ export default function AdminRoot() {
               return (
                 <Button 
                   key={item.name}
-                  variant="secondary"
+                  variant="admin-secondary"
                   className={`nav-item ${activeTab === item.name ? 'is-active' : ''}`}
                   onClick={() => setActiveTab(item.name)}
                 >
@@ -105,12 +105,12 @@ export default function AdminRoot() {
             </div>
 
             <div className="sidebar-actions">
-              <Button variant="secondary" className="action-item logout">
-                <LogOut size={16} strokeWidth={2} />
-                <span>Sign Out</span>
+              <Button variant="admin-secondary" className="action-item logout">
+                <LogOut size={16} />
+                <span>Logout</span>
               </Button>
-              <Button variant="secondary" className="action-item security">
-                <ShieldCheck size={16} strokeWidth={2} />
+              <Button variant="admin-secondary" className="action-item security">
+                <ShieldCheck size={16} />
                 <span>Security</span>
               </Button>
             </div>

@@ -167,15 +167,15 @@ export default function Products() {
           </div>
 
           <div className="action-buttons">
-            <Button variant="secondary">
+            <Button variant="admin-secondary">
               <Filter size={16} />
               <span>Filter</span>
             </Button>
-            <Button variant="secondary">
+            <Button variant="admin-secondary">
               <Upload size={16} />
               <span>Export</span>
             </Button>
-            <Button onClick={() => setIsModalOpen(true)}>
+            <Button variant="admin-primary" onClick={() => setIsModalOpen(true)}>
               <Plus size={16} />
               <span>Add Product</span>
             </Button>
@@ -357,8 +357,8 @@ export default function Products() {
               </div>
 
               <div className="modal-footer">
-                <Button type="button" variant="secondary" onClick={() => setIsModalOpen(false)}>Cancel</Button>
-                <Button type="submit">Add Product</Button>
+                <Button type="button" variant="admin-secondary" onClick={() => setIsModalOpen(false)}>Cancel</Button>
+                <Button variant="admin-primary" type="submit">Add Product</Button>
               </div>
             </form>
           </div>
