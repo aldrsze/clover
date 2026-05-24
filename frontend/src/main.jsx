@@ -10,7 +10,7 @@ import './components/features/Home/BestSellerSection.css'
 import './components/features/Home/CallToActionSection.css'
 import './components/common/Header/Header.css'
 import './components/common/Footer/Footer.css'
-import './pages/Public/products.css'
+import './pages/Public/ProductsPage/ProductsPage.css'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
