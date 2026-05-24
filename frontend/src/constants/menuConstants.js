@@ -19,3 +19,10 @@ export const CATEGORY_LABEL = Object.fromEntries(
 export const PREF_LABEL = Object.fromEntries(
   MENU_PREFERENCES.map(p => [p.value, p.label])
 );
+
+export const TAG_STYLES = {
+  sweet:   { background: '#fff8f0', border: '#f0d9b5', color: '#8a5a00' },
+  savory:  { background: '#f0f5ff', border: '#c5d5f5', color: '#2a45a0' },
+  seafood: { background: '#f0fbf7', border: '#b5e5d5', color: '#0a6045' },
+  meat:    { background: '#fff0f0', border: '#f5c5c5', color: '#a02020' },
+};  

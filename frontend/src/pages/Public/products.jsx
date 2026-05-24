@@ -1,16 +1,11 @@
 import React, { useState, useEffect, useCallback, useLayoutEffect } from 'react';
-import { MENU_CATEGORIES, MENU_PREFERENCES, PREF_LABEL } from '../../constants/menuConstants';
-import { apiClient } from '../../api/apiClient';
 import { Button } from '../../components/common/Button/Button';
 import { useProducts } from '../../hooks/useProducts';
-
-// Tag colors per preference (using CSS variables from main.css)
-const TAG_STYLES = {
-  sweet:   { background: '#fff8f0', border: '#f0d9b5', color: '#8a5a00' },
-  savory:  { background: '#f0f5ff', border: '#c5d5f5', color: '#2a45a0' },
-  seafood: { background: '#f0fbf7', border: '#b5e5d5', color: '#0a6045' },
-  meat:    { background: '#fff0f0', border: '#f5c5c5', color: '#a02020' },
-};
+import {
+  MENU_CATEGORIES,
+  MENU_PREFERENCES,
+  TAG_STYLES
+} from '../../constants/menuConstants';
 
 export default function Products({ addToCart }) {
   const [selectedPrefs, setSelectedPrefs] = useState([]);
