@@ -32,21 +32,21 @@ export const HeroSection = ({ setCurrentPage }) => {
             <div className="hero-composition">
               <div className="comp-item main">
                 <img
-                  src="/images/ICED-WHITE-CHOCOLATE-MOCHA-removebg.png"
+                  src="/images/ICED-WHITE-CHOCOLATE-MOCHA-hero.png"
                   alt="Iced White Chocolate Mocha"
                   className="floating-img"
                 />
               </div>
               <div className="comp-item sub-1">
                 <img
-                  src="/images/JAVACHIP-JAVAKULA-removebg.png"
+                  src="/images/JAVACHIP-JAVAKULA-hero.png"
                   alt="Javachip Javakula"
                   className="floating-img-alt"
                 />
               </div>
               <div className="comp-item sub-2">
                 <img
-                  src="/images/Strawberry-Milkshake-600x600-removebg.png"
+                  src="/images/Strawberry-Milkshake-600x600-hero.png"
                   alt="Strawberry Milkshake"
                   className="floating-img"
                 />

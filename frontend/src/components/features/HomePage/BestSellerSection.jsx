@@ -13,7 +13,7 @@ export const BestSellerSection = ({ setCurrentPage }) => {
             <article className="featured-card animate-on-scroll">
               <div className="product-tag">Breakfast</div>
               <div className="product-image-container">
-                <img src="/images/BIG-BREAKFAST-3.jpg" alt="The Big Breakfast" />
+                <img src="/images/BIG-BREAKFAST-3-bs.jpg" alt="The Big Breakfast" />
               </div>
               <div className="product-info">
                 <h3>The Big Breakfast</h3>
@@ -26,7 +26,7 @@ export const BestSellerSection = ({ setCurrentPage }) => {
             <article className="featured-card animate-on-scroll" style={{ transitionDelay: '0.1s' }}>
               <div className="product-tag">Pastries</div>
               <div className="product-image-container">
-                <img src="/images/Blueberry-Cheesecake-600x600.jpg" alt="Blueberry Cheesecake" />
+                <img src="/images/Blueberry-Cheesecake-600x600-bs.jpg" alt="Blueberry Cheesecake" />
               </div>
               <div className="product-info">
                 <h3>Blueberry Cheesecake</h3>
@@ -39,7 +39,7 @@ export const BestSellerSection = ({ setCurrentPage }) => {
             <article className="featured-card animate-on-scroll" style={{ transitionDelay: '0.2s' }}>
               <div className="product-tag">Beverages</div>
               <div className="product-image-container">
-                <img src="/images/ICED-WHITE-CHOCOLATE-MOCHA-removebg.png" alt="Iced White Chocolate Mocha" />
+                <img src="/images/ICED-WHITE-CHOCOLATE-MOCHA-bs.png" alt="Iced White Chocolate Mocha" />
               </div>
               <div className="product-info">
                 <h3>White Chocolate Mocha</h3>
