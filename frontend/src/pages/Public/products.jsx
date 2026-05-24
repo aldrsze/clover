@@ -4,6 +4,7 @@ import { useProducts } from '../../hooks/useProducts';
 import {
   MENU_CATEGORIES,
   MENU_PREFERENCES,
+  PREF_LABEL,
   TAG_STYLES
 } from '../../constants/menuConstants';
 

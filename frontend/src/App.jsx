@@ -2,7 +2,7 @@ import React, { useLayoutEffect, useState, useEffect } from 'react';
 import Header from './components/common/Header/Header';
 import Footer from './components/common/Footer/Footer';
 import Home from './pages/Public/HomePage/HomePage';
-import Products from './pages/Public/Products';
+import Products from './pages/Public/products';
 import AdminRoot from './pages/Admin/AdminRoot'; 
 import { useCart } from './hooks/useCart';
 
