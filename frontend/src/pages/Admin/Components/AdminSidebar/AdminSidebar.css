@@ -110,6 +110,7 @@
   width: 100%;
   display: flex;
   align-items: center;
+  justify-content: flex-start;
   /*
     gap    : 10px → 12px   COEFF ≈ 0.00481
     padding: 10/12px → 12/14px
