@@ -23,15 +23,6 @@ export default function FloatingCart({
   const [checkoutItems, setCheckoutItems] = useState([]);
   const [checkoutTotal, setCheckoutTotal] = useState(0);
   const [checkoutSuccessCallback, setCheckoutSuccessCallback] = useState(() => {});
-  const [shippingAddress, setShippingAddress] = useState(() => {
-    const savedUser = localStorage.getItem("user");
-    if (savedUser) {
-      const parsed = JSON.parse(savedUser);
-      return parsed.address || "";
-    }
-    return "";
-  });
-  const [isSubmitting, setIsSubmitting] = useState(false);
 
   // Close when clicking outside (on the overlay)
   const handleOverlayClick = (e) => {
