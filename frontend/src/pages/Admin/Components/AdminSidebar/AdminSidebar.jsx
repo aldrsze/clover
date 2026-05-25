@@ -11,7 +11,7 @@ import {
   ExternalLink,
 } from "lucide-react";
 import { Button } from "../../../../components/common/Button/Button";
-import { useMemo, useState } from "react";
+import { useMemo, useState, useEffect } from "react";
 
 const MODAL_CONTENT = {
   help: {
@@ -50,6 +50,31 @@ const MODAL_CONTENT = {
 
 export const AdminSidebar = ({ setActiveTab, activeTab }) => {
   const [activeModal, setActiveModal] = useState(null);
+  const [headerHeight, setHeaderHeight] = useState("var(--admin-header-height)");
+
+  useEffect(() => {
+    const stickyHeader = document.querySelector(".sticky-header");
+    
+    const updateHeight = () => {
+      if (stickyHeader) {
+        setHeaderHeight(`${stickyHeader.offsetHeight}px`);
+      }
+    };
+
+    updateHeight();
+
+    const resizeObserver = new ResizeObserver(() => {
+      updateHeight();
+    });
+
+    if (stickyHeader) {
+      resizeObserver.observe(stickyHeader);
+    }
+
+    return () => {
+      resizeObserver.disconnect();
+    };
+  }, [activeTab]);
 
   const navItems = [
     { name: "Dashboard", icon: LayoutDashboard },
@@ -63,7 +88,7 @@ export const AdminSidebar = ({ setActiveTab, activeTab }) => {
 
   return (
     <div className="admin-sidebar">
-      <div className="admin-sidebar-header">
+      <div className="admin-sidebar-header" style={{ height: headerHeight }}>
         <img
           src="/images/brand/clover-logo.png"
           alt="Clover Logo"
