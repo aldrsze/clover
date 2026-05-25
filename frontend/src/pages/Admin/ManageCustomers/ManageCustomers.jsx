@@ -1,6 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
 import {
-  Bell,
   CalendarDays,
   Loader2,
   Mail,
@@ -311,10 +310,6 @@ export default function ManageCustomers() {
           </div>
 
           <div className="page-header-actions">
-            <Button variant="none" className="notification-trigger">
-              <Bell size={18} />
-              <span className="notification-dot"></span>
-            </Button>
             <Button variant="admin-secondary" onClick={() => loadCustomers(false)} disabled={isRefreshing}>
               {isRefreshing ? <Loader2 size={16} className="spin" /> : <RefreshCw size={16} />}
               <span>{isRefreshing ? "Refreshing" : "Refresh"}</span>

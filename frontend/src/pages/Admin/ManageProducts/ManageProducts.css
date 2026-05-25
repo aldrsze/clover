@@ -186,6 +186,55 @@
   flex-shrink: 0;
 }
 
+.action-buttons .btn-admin-secondary.is-active {
+  border-color: #171717;
+  background: #f4f4f5;
+}
+
+.product-filters-panel {
+  margin-top: 12px;
+  padding: 14px;
+  border: 1px solid var(--admin-border);
+  border-radius: 14px;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.product-filters-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.product-filters-grid .field input,
+.product-filters-grid .field select {
+  width: 100%;
+  border: 1px solid var(--admin-border);
+  border-radius: 10px;
+  padding: 11px 12px;
+  font: inherit;
+  color: var(--admin-text);
+  background: #fff;
+  outline: none;
+}
+
+.product-filters-grid .field input:focus,
+.product-filters-grid .field select:focus {
+  border-color: #171717;
+  box-shadow: 0 0 0 3px rgba(23, 23, 23, 0.06);
+}
+
+.product-filters-footer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.product-filters-footer .btn-admin-secondary {
+  height: 40px;
+}
+
 /* "Add Product" button — strong emphasis */
 .action-buttons .btn-admin-primary {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.08);
@@ -238,6 +287,18 @@
   color: #dc2626;
   background-color: #fef2f2;
   border-color: #fecaca;
+}
+
+@media (max-width: 980px) {
+  .product-filters-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 560px) {
+  .product-filters-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* ══════════════════════════════════════════════════════════════════════════════

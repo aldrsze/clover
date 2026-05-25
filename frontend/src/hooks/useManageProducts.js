@@ -8,6 +8,11 @@ export const useManageProducts = () => {
   const [editingProduct, setEditingProduct] = useState(null);
   const [deletingProduct, setDeletingProduct] = useState(null);
   const [searchQuery, setSearchQuery] = useState("");
+  const [categoryFilter, setCategoryFilter] = useState("All");
+  const [stockFilter, setStockFilter] = useState("All");
+  const [minPriceFilter, setMinPriceFilter] = useState("");
+  const [maxPriceFilter, setMaxPriceFilter] = useState("");
+  const [isFilterPanelOpen, setIsFilterPanelOpen] = useState(false);
   const [newProduct, setNewProduct] = useState({
     name: "",
     description: "",
@@ -60,6 +65,15 @@ export const useManageProducts = () => {
     });
     setImageFile(null);
     setImagePreview(null);
+  };
+
+  const clearFilters = () => {
+    setSearchQuery("");
+    setCategoryFilter("All");
+    setStockFilter("All");
+    setMinPriceFilter("");
+    setMaxPriceFilter("");
+    setIsFilterPanelOpen(false);
   };
 
   // ── Open modal for adding a new product ──
@@ -167,11 +181,31 @@ export const useManageProducts = () => {
     }
   };
 
-  const filteredProducts = products.filter(
-    (product) =>
-      product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      product.category?.toLowerCase().includes(searchQuery.toLowerCase()),
-  );
+  const filteredProducts = products.filter((product) => {
+    const query = searchQuery.trim().toLowerCase();
+    const productName = String(product.name || "").toLowerCase();
+    const productCategory = String(product.category || "").toLowerCase();
+    const matchesSearch = !query || productName.includes(query) || productCategory.includes(query);
+
+    const matchesCategory =
+      categoryFilter === "All" || String(product.category || "") === categoryFilter;
+    const matchesStock =
+      stockFilter === "All" ||
+      (stockFilter === "In Stock" && Number(product.stock_quantity || 0) > 0) ||
+      (stockFilter === "Out of Stock" && Number(product.stock_quantity || 0) === 0);
+
+    const price = Number(product.price || 0);
+    const minPrice = minPriceFilter === "" ? null : Number(minPriceFilter);
+    const maxPrice = maxPriceFilter === "" ? null : Number(maxPriceFilter);
+    const matchesMinPrice = minPrice === null || Number.isNaN(minPrice) || price >= minPrice;
+    const matchesMaxPrice = maxPrice === null || Number.isNaN(maxPrice) || price <= maxPrice;
+
+    return matchesSearch && matchesCategory && matchesStock && matchesMinPrice && matchesMaxPrice;
+  });
+
+  const productCategories = [
+    ...new Set(products.map((product) => String(product.category || "").trim()).filter(Boolean)),
+  ].sort((a, b) => a.localeCompare(b));
 
   const totalProducts = products.length;
   const lowStockProducts = products.filter(
@@ -187,6 +221,17 @@ export const useManageProducts = () => {
     modalMode,
     searchQuery,
     setSearchQuery,
+    categoryFilter,
+    setCategoryFilter,
+    stockFilter,
+    setStockFilter,
+    minPriceFilter,
+    setMinPriceFilter,
+    maxPriceFilter,
+    setMaxPriceFilter,
+    isFilterPanelOpen,
+    setIsFilterPanelOpen,
+    clearFilters,
     newProduct,
     imagePreview,
     handleInputChange,
@@ -200,6 +245,7 @@ export const useManageProducts = () => {
     setDeletingProduct,
     handleDelete,
     filteredProducts,
+    productCategories,
     totalProducts,
     lowStockProducts,
     outOfStockProducts,

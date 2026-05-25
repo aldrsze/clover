@@ -4,13 +4,10 @@ import {
   Search,
   Filter,
   X,
-  Upload,
   Pencil,
   Trash,
   Package,
   AlertCircle,
-  Bell,
-  Image as ImageIcon,
 } from "lucide-react";
 import { CATEGORY_LABEL } from "../../../constants/menuConstants";
 import { Button } from "../../../components/common/Button/Button";
@@ -25,6 +22,17 @@ export default function Products() {
     modalMode,
     searchQuery,
     setSearchQuery,
+    categoryFilter,
+    setCategoryFilter,
+    stockFilter,
+    setStockFilter,
+    minPriceFilter,
+    setMinPriceFilter,
+    maxPriceFilter,
+    setMaxPriceFilter,
+    isFilterPanelOpen,
+    setIsFilterPanelOpen,
+    clearFilters,
     newProduct,
     imagePreview,
     handleInputChange,
@@ -37,6 +45,7 @@ export default function Products() {
     setDeletingProduct,
     handleDelete,
     filteredProducts,
+    productCategories,
     totalProducts,
     lowStockProducts,
     outOfStockProducts,
@@ -78,12 +87,6 @@ export default function Products() {
             </div>
           </div>
 
-          <div className="page-header-actions">
-            <Button variant="none" className="notification-trigger">
-              <Bell size={18} />
-              <span className="notification-dot"></span>
-            </Button>
-          </div>
         </header>
       </div>
 
@@ -100,13 +103,14 @@ export default function Products() {
           </div>
 
           <div className="action-buttons">
-            <Button variant="admin-secondary">
+            <Button
+              variant="admin-secondary"
+              onClick={() => setIsFilterPanelOpen((prev) => !prev)}
+              className={isFilterPanelOpen ? "is-active" : ""}
+              title="Toggle product filters"
+            >
               <Filter size={16} />
               <span>Filter</span>
-            </Button>
-            <Button variant="admin-secondary">
-              <Upload size={16} />
-              <span>Export</span>
             </Button>
             <Button
               variant="admin-primary"
@@ -117,6 +121,63 @@ export default function Products() {
             </Button>
           </div>
         </div>
+
+        {isFilterPanelOpen && (
+          <div className="product-filters-panel">
+            <div className="product-filters-grid">
+              <label className="field compact">
+                <span>Category</span>
+                <select value={categoryFilter} onChange={(e) => setCategoryFilter(e.target.value)}>
+                  <option value="All">All categories</option>
+                  {productCategories.map((category) => (
+                    <option key={category} value={category}>
+                      {CATEGORY_LABEL[category] || category}
+                    </option>
+                  ))}
+                </select>
+              </label>
+
+              <label className="field compact">
+                <span>Stock</span>
+                <select value={stockFilter} onChange={(e) => setStockFilter(e.target.value)}>
+                  <option value="All">All stock</option>
+                  <option value="In Stock">In Stock</option>
+                  <option value="Out of Stock">Out of Stock</option>
+                </select>
+              </label>
+
+              <label className="field compact">
+                <span>Min price</span>
+                <input
+                  type="number"
+                  min="0"
+                  step="0.01"
+                  value={minPriceFilter}
+                  onChange={(e) => setMinPriceFilter(e.target.value)}
+                  placeholder="0.00"
+                />
+              </label>
+
+              <label className="field compact">
+                <span>Max price</span>
+                <input
+                  type="number"
+                  min="0"
+                  step="0.01"
+                  value={maxPriceFilter}
+                  onChange={(e) => setMaxPriceFilter(e.target.value)}
+                  placeholder="0.00"
+                />
+              </label>
+            </div>
+
+            <div className="product-filters-footer">
+              <Button variant="admin-secondary" onClick={clearFilters}>
+                Reset filters
+              </Button>
+            </div>
+          </div>
+        )}
 
         <div className="table-container">
           <table className="admin-table">
