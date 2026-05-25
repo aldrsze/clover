@@ -8,7 +8,7 @@ import Utilities from "../../Utilities/Utilities";
 import { AdminSidebar } from "../AdminSidebar/AdminSidebar";
 
 export default function AdminRoot() {
-  const [activeTab, setActiveTab] = useState("Products"); // Default to Products for this task
+  const [activeTab, setActiveTab] = useState("Dashboard"); // Default to Dashboard
 
   return (
     <div className="admin-dashboard">
