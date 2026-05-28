@@ -17,6 +17,7 @@
 - Backend: Node.js, Express, Multer, JWT, bcrypt
 - Database: PostgreSQL
 - Tooling: npm, ESLint
+- AI : Gemini, Claude, Github Copilot
 
 ## Developer
 
